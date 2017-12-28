@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+<context:property-placeholder location="classpath:resource/*.properties"/>
+<!-- 配置数据源 -->
+<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+	<property name="driverClassName" value="${jdbc.driverClass}" />
+      <property name="url" value="${jdbc.url}" />
+      <property name="username" value="${jdbc.user}" />
+      <property name="password" value="${jdbc.password}" />
+      <property name="maxActive" value="${jdbc.maxActive}" />                                          <!-- 同时连接的最大的连接数 -->
+      <property name="initialSize" value="${jdbc.initialSize}" />                                      <!-- 连接池启动时创建的初始化连接数量 -->
+      <property name="maxWait" value="${jdbc.maxWait}" />                                              <!-- 最大等待时间 ms-->
+      <property name="maxIdle" value="${jdbc.maxIdle}" />                                              <!-- 最大的空闲的连接数 -->
+      <property name="minIdle" value="${jdbc.minIdle}" />                                              <!-- 最小的空闲的连接数 -->
+      <property name="removeAbandoned" value="${jdbc.removeAbandoned}" />                              <!-- 超过时间后是否进行连接（废弃）的回收 -->
+      <property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}" />                <!-- 超过时间限制 s-->
+      <property name="testOnBorrow" value="${jdbc.testOnBorrow}" />                                    <!-- 进行borrowObject进行处理时，对connection进行validateObject校验 -->
+      <property name="testOnReturn" value="${jdbc.testOnReturn}" />                                    <!-- 对返回的connection进行validateObject校验 -->
+      <property name="validationQuery" value="${jdbc.validationQuery}" />                              <!-- 检查连接的sql -->
+      <property name="validationQueryTimeout" value="${jdbc.validationQueryTimeout}" />                <!-- 执行检查时超时时间 -->
+      <property name="testWhileIdle" value="${jdbc.testWhileIdle}" />                                  <!-- 打开检查,用异步线程evict进行检查 -->  
+      <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />  <!-- testWhileIdle开启后定时对线程池中的链接进行validateObject校验 -->
+      <property name="numTestsPerEvictionRun" value="${jdbc.numTestsPerEvictionRun}" />                <!-- 每次检查链接的数量，建议设置和maxActive一样大 -->
+</bean>
+<!-- hibernate相关配置 -->
+<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"/>
+	<property name="packagesToScan" >
+		<list>
+			<value>com.ly.bean.pojo</value>
+		</list>
+	</property>
+	<property name="hibernateProperties">
+		<props>
+			 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.query.substitutions">${hibernate.query.substitutions}</prop>
+                <prop key="hibernate.connection.release_mode">${hibernate.connection.release_mode}</prop> 
+		</props>
+	</property>
+</bean>
+
+<!-- 配置SqlSessionFactory -->
+<bean id="sqlSes"></bean>
+</beans>

@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.ly</groupId>
+    <artifactId>parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>com.ly.data</groupId>
+  <artifactId>dao</artifactId>
+  <version>0.0.1</version>
+  <packaging>war</packaging>
+  <properties>
+    <spring.data.jpa.version>1.4.1.RELEASE</spring.data.jpa.version>
+    <hibernate.core.version>4.3.0.Final</hibernate.core.version>
+    <hibernate.ehcache.version>4.3.0.Final</hibernate.ehcache.version>
+    <hibernate.commons.annotaions.version>4.0.4.Final</hibernate.commons.annotaions.version>
+    <hibernate.validator.version>5.0.2.Final</hibernate.validator.version>
+   
+  	<!-- mysql driver setting -->
+  	<jdbc.driver.groupId>mysql</jdbc.driver.groupId>
+  	<jdbc.driver.artifactId>mysql-connector-java</jdbc.driver.artifactId>
+  	<jdbc.driver.version>5.1.13</jdbc.driver.version>
+  	
+  	<!-- oracle driver setting -->
+  	<jdbc.driver.groupId>com.oracle</jdbc.driver.groupId>
+  	<jdbc.driver.artifactId>ojdbc</jdbc.driver.artifactId>
+  	<jdbc.driver.version>10.2.0.1.0</jdbc.driver.version>
+  
+  	<!-- mssql driver setting -->
+  	<jdbc.driver.groupId>net.sourceforge.jtds</jdbc.driver.groupId>
+  	<jdbc.driver.artifactId>jtds</jdbc.driver.artifactId>
+  	<jdbc.driver.version>1.2.4</jdbc.driver.version>
+  </properties>
+	<dependencies>
+		<!-- jdbc driver -->
+        <dependency>
+          <groupId>${jdbc.driver.groupId}</groupId>
+          <artifactId>${jdbc.driver.artifactId}</artifactId>
+          <version>${jdbc.driver.version}</version>
+          <scope>runtime</scope>
+        </dependency>
+       <!-- hibernate相关jar包 -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.core.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javassist</groupId>
+                    <artifactId>javassist</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.core.version}</version>
+        </dependency>
+       <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>${hibernate.ehcache.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>ehcache-core</artifactId>
+                    <groupId>net.sf.ehcache</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.common</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>${hibernate.commons.annotaions.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- hibernate validator  相关jar包 -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate.validator.version}</version>
+        </dependency>
+        
+        <!-- spring jpa -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring.data.jpa.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+	</dependencies>
+</project>

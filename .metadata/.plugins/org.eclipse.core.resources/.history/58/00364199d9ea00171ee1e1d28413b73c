@@ -1,0 +1,11 @@
+package com.ly.module1.dao;
+
+import org.springframework.stereotype.Repository;
+
+import com.ly.bean.pojo.BasePojo;
+import com.ly.bean.pojo.Pojo;
+
+@Repository
+public class PojoDao extends BasePojo<Pojo>{
+
+}

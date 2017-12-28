@@ -1,0 +1,11 @@
+package com.ly.module1.controller;
+
+import org.springframework.stereotype.Controller;
+
+import com.ly.bean.base.BaseController;
+
+@Controller
+
+public class PojoController extends BaseController{
+	
+}

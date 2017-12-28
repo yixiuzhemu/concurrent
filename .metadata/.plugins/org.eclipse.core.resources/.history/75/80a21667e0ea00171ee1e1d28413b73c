@@ -1,0 +1,10 @@
+package com.ly.module1.message;
+
+public class PojoMessage {
+	private static final Long SUCCESS_CODE = 200L;
+	private static final Long EXCEPTION_CODE = 500L;
+	private static final Long NOT_FOUND_CODE = 404L;
+	private static final String SUCCESS_MESSAGE ="数据获取成功!";
+	private static final String EXCEPTION_MESSAGE = "数据获取异常!";
+	private static final String NOT_FOUND_MESSAGE = "数据获取失败!";
+}

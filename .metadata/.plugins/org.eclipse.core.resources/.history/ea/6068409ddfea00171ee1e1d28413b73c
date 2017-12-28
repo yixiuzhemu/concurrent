@@ -1,0 +1,5 @@
+package com.ly.module1.controller;
+
+public class PojoController {
+
+}
