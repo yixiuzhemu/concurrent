@@ -1,7 +1,0 @@
-package com.ly.module1.dao;
-
-import com.ly.bean.pojo.BasePojo;
-
-public class BaseDao<T extends BasePojo> {
-	
-}
