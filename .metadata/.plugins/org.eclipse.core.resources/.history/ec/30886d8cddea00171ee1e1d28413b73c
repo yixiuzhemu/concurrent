@@ -1,0 +1,6 @@
+package com.ly.module1.dao;
+
+
+public interface PojoDao {
+	public Pojo getPojoById(String id);
+}

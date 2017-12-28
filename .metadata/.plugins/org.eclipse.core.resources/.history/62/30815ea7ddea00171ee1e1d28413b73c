@@ -1,0 +1,15 @@
+package com.ly.module1.dao.impl;
+
+import com.ly.bean.base.BaseDao;
+import com.ly.bean.pojo.Pojo;
+import com.ly.module1.dao.PojoDao;
+
+public class PojoDaoImpl extends BaseDao<Pojo> implements PojoDao {
+
+	@Override
+	public Pojo getPojoById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.ly.data.dao;
+
+public class PojoDao {
+
+}
