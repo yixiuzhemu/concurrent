@@ -1,5 +1,0 @@
-package com.ly.module1.service;
-
-public interface PojoService {
-
-}

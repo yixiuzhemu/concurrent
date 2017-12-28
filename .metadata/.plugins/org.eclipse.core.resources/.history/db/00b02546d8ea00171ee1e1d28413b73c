@@ -1,5 +1,0 @@
-package com.ly.data.dao;
-
-public class BaseDao<T extends BasePojo> {
-	
-}
