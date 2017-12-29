@@ -85,6 +85,7 @@
   	<fasterxml.jackson.databind.version>2.8.9</fasterxml.jackson.databind.version>
   	<fasterxml.jackson.core.version>2.8.9</fasterxml.jackson.core.version>
   	<fasterxml.jackson.annotations.version>2.8.9</fasterxml.jackson.annotations.version>
+  	<jar.plugin.version>3.0.2</jar.plugin.version>
   	<!-- other settin -->
   	<jdk.version>1.8</jdk.version>
   	<tomcat.version>2.1</tomcat.version>
@@ -542,6 +543,7 @@ SQLParser
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
+            
         </dependency>
         <!-- 包含Spring对DAO特性集进行了扩展，
         使其支持 iBATIS、JDO、OJB、TopLink，
@@ -640,7 +642,7 @@ SQLParser
 		    <artifactId>jackson-annotations</artifactId>
 		    <version>  ${fasterxml.jackson.annotations.version}</version>
 		</dependency>
-		
+	
       
  </dependencies>
  <build>
@@ -666,6 +668,7 @@ SQLParser
  				<warName>${project.artifactId}</warName>
  			</configuration>
  		</plugin>
+
  		<!-- Eclipse 插件 -->
  		<plugin>
  			<groupId>org.apache.maven.plugins</groupId>

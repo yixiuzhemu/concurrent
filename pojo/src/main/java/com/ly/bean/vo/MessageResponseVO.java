@@ -4,7 +4,6 @@ public class MessageResponseVO {
 	private Long code;
 	private String message;
 	private Object obj;
-	
 	public MessageResponseVO() {
 		super();
 	}
