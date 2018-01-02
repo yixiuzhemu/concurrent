@@ -42,7 +42,8 @@
  
   <!-- 版本号控制 数据库驱动配置 -->
   <properties>
-  	<spring.version>4.3.1.RELEASE</spring.version>
+  	<spring.version>5.0.2.RELEASE</spring.version>
+  	<spring.other.version>4.3.1.RELEASE</spring.other.version>
     <hibernate.core.version>5.1.2.Final</hibernate.core.version>
     <hibernate.ehcache.version>5.1.2.Final</hibernate.ehcache.version>
     <hibernate.commons.annotaions.version>5.0.1.Final</hibernate.commons.annotaions.version>
@@ -86,6 +87,9 @@
   	<fasterxml.jackson.core.version>2.8.9</fasterxml.jackson.core.version>
   	<fasterxml.jackson.annotations.version>2.8.9</fasterxml.jackson.annotations.version>
   	<jar.plugin.version>3.0.2</jar.plugin.version>
+  	<spring.jedis.version>2.0.2.RELEASE</spring.jedis.version>
+	<jedis.version>2.9.0</jedis.version>
+  	
   	<!-- other settin -->
   	<jdk.version>1.8</jdk.version>
   	<tomcat.version>2.1</tomcat.version>
@@ -323,6 +327,24 @@ SQLParser
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- spring 集成 redis -->
+        <dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-redis</artifactId>
+		    <version>${spring.jedis.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-commons</artifactId>
+		    <version>${spring.jedis.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>${jedis.version}</version>
+		</dependency>
+		
         <!-- 注解配置  -->
         <dependency>
             <groupId>org.hibernate.common</groupId>
@@ -597,7 +619,7 @@ SQLParser
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-instrument-tomcat</artifactId>
-		    <version>${spring.version}</version>
+		    <version>${spring.other.version}</version>
 		</dependency>
 	<!-- spring对jms(java message service)的封装，为了简化对JMS API的使用 -->
 		<dependency>
@@ -615,7 +637,7 @@ SQLParser
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-webmvc-portlet</artifactId>
-		    <version>${spring.version}</version>
+		    <version>${spring.other.version}</version>
 		</dependency>
         <!-- html处理jar包 -->
         <dependency>
