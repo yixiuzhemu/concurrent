@@ -1,31 +1,51 @@
 package com.ly.module1.test;
 
 
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
+
+import com.ly.bean.utils.JsonUtils;
+import com.ly.bean.utils.RedisUtils;
 
 public class RedisTest {
 
 	@Test
 	public void test() {
-		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-redis.xml");
-		RedisTemplate<String,Object> redisTemplate = (RedisTemplate<String,Object>) applicationContext.getBean("redisTemplate");
-		ValueOperations<String, Object> stringValue = redisTemplate.opsForValue();
-		stringValue.set("key", "value", 3000, TimeUnit.SECONDS);
+		List<String> list = new ArrayList<String>();
+		list.add("1");
+		list.add("2");
+		list.add("3");
+		RedisUtils.add("key", list);
 	}
 	
 	@Test
 	public void test1(){
-		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-redis.xml");
-		RedisTemplate<String,Object> redisTemplate = (RedisTemplate<String,Object>) applicationContext.getBean("redisTemplate");
-		ValueOperations<String, Object> stringValue = redisTemplate.opsForValue();
-		Object string = stringValue.get("key");
-		System.out.println(string);
+		String s = RedisUtils.get("key");
+		System.out.println(s);
+		List<String> list = RedisUtils.getByList("key", String.class);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
 	}
-
+	@Test
+	public void test2(){
+		RedisUtils.remove("key");
+	}
+	@SuppressWarnings("unchecked")
+	@Test
+	public void test3(){
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("key1",1);
+		map.put("key2",2);
+		map.put("key3",3);
+		String objectToJson = JsonUtils.objectToJson(map);
+		System.out.println(objectToJson);
+		Map<String, Integer> jsonToMap = JsonUtils.jsonToPojo(objectToJson, Map.class);
+		System.out.println(jsonToMap);
+	}
+	
 }

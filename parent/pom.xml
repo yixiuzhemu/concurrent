@@ -64,7 +64,7 @@
     <mockito.version>1.9.5</mockito.version>
     <powermock.version>1.5.2</powermock.version>
     <h2.version>1.3.174</h2.version>
-    <aspectj.version>1.7.4</aspectj.version>
+    <aspectj.version>1.8.13</aspectj.version>
     <javassist.version>3.18.0-GA</javassist.version>
     <ehcache.core.version>2.6.6</ehcache.core.version>
   	<shiro.version>1.2.2</shiro.version>
@@ -83,13 +83,14 @@
   	<jetty.version>8.1.8.v20121106</jetty.version>
   	<junit.version>4.12</junit.version>
   	<asm.version>5.0.4</asm.version>
-  	<fasterxml.jackson.databind.version>2.8.9</fasterxml.jackson.databind.version>
-  	<fasterxml.jackson.core.version>2.8.9</fasterxml.jackson.core.version>
-  	<fasterxml.jackson.annotations.version>2.8.9</fasterxml.jackson.annotations.version>
+  	<fasterxml.jackson.databind.version>2.9.3</fasterxml.jackson.databind.version>
+  	<fasterxml.jackson.core.version>2.9.3</fasterxml.jackson.core.version>
+  	<fasterxml.jackson.annotations.version>2.9.3</fasterxml.jackson.annotations.version>
   	<jar.plugin.version>3.0.2</jar.plugin.version>
   	<spring.jedis.version>2.0.2.RELEASE</spring.jedis.version>
 	<jedis.version>2.9.0</jedis.version>
-  	
+  	<dubbo.version>2.5.8</dubbo.version>
+  	<zookeeper.version>3.4.10</zookeeper.version>
   	<!-- other settin -->
   	<jdk.version>1.8</jdk.version>
   	<tomcat.version>2.1</tomcat.version>
@@ -97,6 +98,17 @@
   </properties>
  <!-- 依赖项定义 -->
  <dependencies>
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>dubbo</artifactId>
+		    <version>${dubbo.version}</version>
+		</dependency>
+ 		
+ 		<dependency>
+ 			<groupId>com.alibabatech.code</groupId>
+ 			<artifactId>zookeeper</artifactId>
+ 			<version>${zookeeper.version}</version>
+ 		</dependency>
  	 <!-- 测试相关jar包 -->
  	 <!-- 标准的测试用的工具 -->
         <dependency>
