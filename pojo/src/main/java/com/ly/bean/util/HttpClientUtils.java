@@ -1,4 +1,4 @@
-package com.ly.bean.utils;
+package com.ly.bean.util;
 
 import java.io.IOException;
 import java.net.URI;
@@ -19,7 +19,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-public class HttpClientUtil {
+public class HttpClientUtils {
 	public static String doGet(String url,Map<String,String> param){
 		//实例化一个HttpClient对象
 		CloseableHttpClient httpClient = HttpClients.createDefault();

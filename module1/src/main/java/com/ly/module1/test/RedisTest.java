@@ -1,15 +1,17 @@
 package com.ly.module1.test;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.ly.bean.utils.JsonUtils;
-import com.ly.bean.utils.RedisUtils;
+import com.ly.bean.util.JsonUtils;
+import com.ly.bean.util.RedisUtils;
 
 public class RedisTest {
 
@@ -47,5 +49,17 @@ public class RedisTest {
 		Map<String, Integer> jsonToMap = JsonUtils.jsonToPojo(objectToJson, Map.class);
 		System.out.println(jsonToMap);
 	}
+	@Test
+	public void test4(){
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dubbo-provider.xml");
+		applicationContext.start();
+		try {
+			System.in.read();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	
 }

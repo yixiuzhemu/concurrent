@@ -2,7 +2,7 @@ package com.ly.bean.base;
 
 import org.springframework.stereotype.Controller;
 
-import com.ly.bean.utils.JsonUtils;
+import com.ly.bean.util.JsonUtils;
 import com.ly.bean.vo.MessageResponseVO;
 
 @Controller

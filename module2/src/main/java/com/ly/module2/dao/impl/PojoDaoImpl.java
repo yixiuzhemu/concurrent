@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ly.bean.base.BaseDao;
 import com.ly.bean.pojo.Pojo;
-import com.ly.bean.utils.HttpClientUtil;
+import com.ly.bean.util.HttpClientUtils;
 import com.ly.module2.dao.PojoDao;
 @Repository
 public class PojoDaoImpl extends BaseDao<Pojo> implements PojoDao {
@@ -21,7 +21,7 @@ public class PojoDaoImpl extends BaseDao<Pojo> implements PojoDao {
 		Map<String, String> hashMap = new HashMap<String,String>();
 		hashMap.put("id", id);
 		System.out.println(module1Url+getPojoById);
-		return HttpClientUtil.doPost(module1Url+getPojoById,hashMap);
+		return HttpClientUtils.doPost(module1Url+getPojoById,hashMap);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.ly.bean.utils;
+package com.ly.bean.util;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
