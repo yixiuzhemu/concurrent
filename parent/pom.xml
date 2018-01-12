@@ -6,9 +6,9 @@
   <packaging>pom</packaging>
   <repositories>
   	<repository>
-  		<id>local-repo</id>
-  		<name>local Repository</name>
-  		<url>file://D:\repository\</url>
+  		<id>gitHub-mvn-repo</id>
+  		<name>gitHub maven Repository</name>
+  		<url>https://raw.githubusercontent.com/yixiuzhemu/mvn-repo/tree/master/repository/</url>
   	</repository>
  	<repository>
  		<id>apache-repo</id>
@@ -39,7 +39,12 @@
  	</repository>
 
  </repositories>
- 
+ <distributionManagement>
+		<repository>
+			<id>maven-repository</id>
+			<url>https://raw.githubusercontent.com/yixiuzhemu/mvn-repo/tree/master/repository</url>
+		</repository>
+	</distributionManagement>
   <!-- 版本号控制 数据库驱动配置 -->
   <properties>
   	<spring.version>5.0.2.RELEASE</spring.version>
