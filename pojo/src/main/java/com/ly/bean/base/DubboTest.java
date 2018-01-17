@@ -1,4 +1,4 @@
-package com.ly.module2.test;
+package com.ly.bean.base;
 
 import java.util.List;
 

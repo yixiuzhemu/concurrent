@@ -82,4 +82,20 @@ public class StringUtils {
 		return date;
 
 	}
+	/**
+	 * Checks if a String is empty ("") or null.
+	 * StringUtils.isEmpty(null)      = true
+	 * StringUtils.isEmpty("")        = true
+	 * StringUtils.isEmpty(" ")       = false
+	 * StringUtils.isEmpty("bob")     = false
+	 * StringUtils.isEmpty("  bob  ") = false
+	 * @param str
+	 * @return
+	 */
+	public static boolean isEmpty(String str){
+		if(str == null || "".equals(str)){
+			return true;
+		}
+		return false;
+	}
 }

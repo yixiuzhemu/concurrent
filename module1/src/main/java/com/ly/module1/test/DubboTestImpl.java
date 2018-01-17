@@ -3,6 +3,8 @@ package com.ly.module1.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ly.bean.base.DubboTest;
+
 public class DubboTestImpl implements DubboTest {
 
 	@Override
