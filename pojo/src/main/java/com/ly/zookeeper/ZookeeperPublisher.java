@@ -11,7 +11,12 @@ import com.ly.bean.util.ZookeeperUtils;
 
 public class ZookeeperPublisher {
 	public static void publishConfig(ZkClient client,String rootNode,File confDir){
-		File[] confs = confDir.listFiles();
+		File[] confs = new File[1];
+		if(confDir.isFile()){
+			confs[0] = confDir;
+		}else{
+			confs = confDir.listFiles();
+		}
 		int success = 0;
 		int failed = 0;
 		for (File file : confs) {

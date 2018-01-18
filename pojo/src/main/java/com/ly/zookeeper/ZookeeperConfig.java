@@ -43,9 +43,22 @@ public class ZookeeperConfig {
 	 */
 	public static void saveConfigs(ZkClient client,String rootNode,File confDir){
 		List<String> configs = client.getChildren(rootNode);
-		for (String config : configs) {
-			String  content =(String)client.readData(rootNode+"/"+config);
-			File confFile = new File(confDir,config);
+		if(configs != null && configs.size() > 0){
+			for (String config : configs) {
+				String  content =(String)client.readData(rootNode+"/"+config);
+				File confFile = new File(confDir,config);
+				try {
+					FileUtils.writeStringToFile(confFile, content, "UTF-8");
+				} catch (IOException e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+				System.out.println("配置成功保存到本地:"+confFile.getAbsolutePath());
+			}
+		}else{
+			String  content =(String)client.readData(rootNode);
+			rootNode = rootNode.substring(rootNode.lastIndexOf("/"));
+			File confFile = new File(confDir,rootNode);
 			try {
 				FileUtils.writeStringToFile(confFile, content, "UTF-8");
 			} catch (IOException e) {
@@ -54,5 +67,6 @@ public class ZookeeperConfig {
 			}
 			System.out.println("配置成功保存到本地:"+confFile.getAbsolutePath());
 		}
+		
 	}
 }

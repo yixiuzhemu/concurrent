@@ -7,5 +7,5 @@ public class Constant {
 	public static int ZK_TIMEOUT = 30000;
 	public static String ZK_ADDRESS = "127.0.0.1:2181";
 	public final static String CONFIG_FILES="E:/resource";
-	
+	public final static String QUEUE_ADDRESS="/queue";
 }

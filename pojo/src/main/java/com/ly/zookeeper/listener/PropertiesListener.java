@@ -7,7 +7,6 @@ import java.util.concurrent.CountDownLatch;
 
 import org.I0Itec.zkclient.ZkClient;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.PropertyConfigurator;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 
@@ -17,8 +16,8 @@ import com.ly.zookeeper.Constant;
 import com.ly.zookeeper.DynamicPropertiesHelper;
 import com.ly.zookeeper.DynamicPropertiesHelperFactory;
 import com.ly.zookeeper.PropertyChangeListener;
-import com.ly.zookeeper.Zookeeper;
 import com.ly.zookeeper.ZookeeperConfig;
+import com.ly.zookeeper.ZookeeperInstance;
 import com.ly.zookeeper.ZookeeperPublisher;
 import com.ly.zookeeper.impl.ZkConfigChangeSubscriberImpl;
 
@@ -26,9 +25,7 @@ import com.ly.zookeeper.impl.ZkConfigChangeSubscriberImpl;
 public class PropertiesListener {
 	public static void listenerProperties(String path,String savePath){
 		//获取zkClient实例对象
-		ZkClient zkClient = Zookeeper.getZkClientInstance();
-		//加载zookeeper配置文件
-		ZookeeperConfig.loadProperties();
+		ZkClient zkClient = ZookeeperInstance.getZkClientInstance();
 		//创建订阅者的监听器
 		ZkConfigChangeSubscriberImpl changeSubscriberImpl = new ZkConfigChangeSubscriberImpl(zkClient, path);
 		//获取当前nodeName下的所有配置文件
@@ -38,20 +35,23 @@ public class PropertiesListener {
 			changeSubscriberImpl.subscribe(key , new ConfigChangeListener() {
 				@Override
 				public void change(String p1, Object value) {
-					System.out.println("接收到数据变更通知1: key=" + p1 + ", value="
+					System.out.println("接收到数据变更通知: key=" + p1 + ", value="
 							+ value);
 					PropertiesListener.getConfigs(path,savePath);
 					latch.countDown();
 				}
 			});
-			PropertiesListener.excuteZookeeperMessage(path+"/"+key);
 		}
-		
+		try {
+			System.in.read();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public static void registProperties(String key){
-		ZkClient zkClient = Zookeeper.getZkClientInstance();
 		//获取动态属性工厂实例
-		DynamicPropertiesHelperFactory helperFactory = Zookeeper.getHelperFactoryInstance();
+		DynamicPropertiesHelperFactory helperFactory = ZookeeperInstance.getHelperFactoryInstance();
 		DynamicPropertiesHelper helper = helperFactory.getHelper(key);
 		helper.registerListener(key, new PropertyChangeListener() {
 			@Override
@@ -67,7 +67,7 @@ public class PropertiesListener {
 	 * @param filePath
 	 */
 	public static void publisherProperties(String filePath){
-		ZkClient zkClient = Zookeeper.getZkClientInstance();
+		ZkClient zkClient = ZookeeperInstance.getZkClientInstance();
 		File file = new File(filePath);
 		ZookeeperPublisher.publishConfig(zkClient, Constant.ZK_CONFIG_ROOTNODE, file);
 	}
@@ -76,7 +76,7 @@ public class PropertiesListener {
 	 * @param path
 	 */
 	public static void getConfigs(String path,String savePath){
-		ZkClient zkClient = Zookeeper.getZkClientInstance();
+		ZkClient zkClient = ZookeeperInstance.getZkClientInstance();
 		File file = new File(savePath);
 		ZookeeperConfig.saveConfigs(zkClient, path, file);
 	}
@@ -89,7 +89,7 @@ public class PropertiesListener {
 	
 	public static void excuteZookeeperMessage(String path){
 		StringRedisTemplate template = Redis.getRedisTemplateInstance();
-		ZkClient zkClient = Zookeeper.getZkClientInstance();
+		ZkClient zkClient = ZookeeperInstance.getZkClientInstance();
 		ValueOperations<String, String> forValue = template.opsForValue();
 		String string = forValue.get("zookeeper:message:"+path);
 		if(!StringUtils.isEmpty(string)){
